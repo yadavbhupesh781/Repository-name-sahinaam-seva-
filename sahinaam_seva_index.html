@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#135e4b">
+<title>सहीनाम सेवा | SahiNaam Seva</title>
+<style>
+:root{--green:#135e4b;--pale:#e8f5ef;--ink:#172720;--muted:#607068;--line:#d8e5dd;--bg:#f4f8f5;--warn:#fff2d5}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans Devanagari",Arial,sans-serif}
+header{background:linear-gradient(135deg,#135e4b,#25836b);color:white;padding:22px 16px;border-radius:0 0 24px 24px}
+.wrap{max-width:760px;margin:auto;padding:0 14px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.logo{font-size:25px;font-weight:850}.tag{font-size:13px;opacity:.9;margin-top:4px}
+button{cursor:pointer;font:inherit}.lang{background:white;color:var(--green);border:0;border-radius:999px;padding:9px 12px;font-weight:750}
+main{padding:16px 0 28px}.notice{background:var(--warn);border:1px solid #f0d99e;border-radius:14px;padding:12px 14px;font-size:13px;line-height:1.5;margin-bottom:14px}
+.card{background:white;border:1px solid var(--line);border-radius:18px;padding:16px;margin:12px 0;box-shadow:0 4px 16px #123c2510}
+h2{font-size:18px;margin:0 0 7px}p{font-size:13px;line-height:1.5;color:var(--muted);margin:5px 0 12px}
+label{display:block;font-size:13px;font-weight:750;margin:12px 0 6px}
+input{width:100%;padding:12px;border:1px solid #c8d8ce;border-radius:11px;font:inherit;font-size:16px;background:#fff;color:var(--ink)}
+.btn{width:100%;padding:13px;border:0;border-radius:12px;background:var(--green);color:white;font-weight:800;margin-top:12px}
+.btn.alt{background:var(--pale);color:var(--green);border:1px solid #cce2d5}
+.rowdoc{display:grid;grid-template-columns:.85fr 1.15fr;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid #edf2ee}
+.rowdoc:last-child{border-bottom:0}.rowdoc small{display:block;color:var(--muted);font-size:11px;margin-bottom:4px}
+.rowdoc input{font-size:14px;padding:10px}.result{background:#f1f7f3;border-radius:12px;padding:12px;margin-top:9px;font-size:14px;overflow-wrap:anywhere}
+.good{color:#17643c;font-weight:800}.bad{color:#9a5c00;font-weight:800}.links a{display:block;text-decoration:none;color:var(--green);font-weight:750;padding:11px 0;border-bottom:1px solid #edf2ee}.links a:last-child{border-bottom:0}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:12px 0 24px}
+@media(max-width:420px){.logo{font-size:21px}.rowdoc{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="wrap top"><div><div class="logo" id="brand">सहीनाम सेवा</div><div class="tag" id="tagline">सही नाम • आसान मार्गदर्शन</div></div><button class="lang" id="langButton" onclick="toggleLanguage()">English</button></div></header>
+<main class="wrap">
+<div class="notice" id="privacy">🔒 सुरक्षित डेमो: केवल नकली नाम लिखें। असली आधार नंबर या दस्तावेज़ यहाँ न डालें। यह सरकारी ऐप नहीं है और सरकारी रिकॉर्ड अपने आप नहीं बदल सकता।</div>
+<section class="card">
+<h2 id="h1">1. अपना सही नाम लिखें</h2><p id="p1">वैध प्रमाण के अनुसार सही नाम दर्ज करें।</p>
+<label for="correct" id="correctLabel">सही नाम</label><input id="correct" autocomplete="off" placeholder="उदाहरण: Kavita Yadav">
+<button class="btn" id="compareBtn" onclick="compareNames()">नामों की तुलना करें</button>
+<button class="btn alt" id="demoBtn" onclick="fillDemo()">नकली उदाहरण भरें</button>
+</section>
+<section class="card"><h2 id="h2">2. दस्तावेज़ों में लिखा नाम</h2><p id="p2">नीचे केवल नकली उदाहरण दर्ज करें। इस संस्करण में फ़ाइल अपलोड बंद है।</p><div id="documents"></div></section>
+<section class="card"><h2 id="h3">3. संभावित गलतियाँ</h2><div id="results"><p id="empty">सही नाम लिखें, फिर दस्तावेज़ों के नाम दर्ज करके तुलना करें।</p></div></section>
+<section class="card links"><h2 id="h4">4. आधिकारिक सुधार लिंक</h2><p id="p4">नियम बदल सकते हैं। आवेदन करने से पहले संबंधित विभाग की वेबसाइट पर मौजूदा प्रक्रिया जाँचें।</p>
+<a href="https://uidai.gov.in/hi/enrolment-and-update" target="_blank" rel="noopener">UIDAI — आधार अपडेट जानकारी ↗</a>
+<a href="https://myaadhaar.uidai.gov.in/" target="_blank" rel="noopener">MyAadhaar आधिकारिक पोर्टल ↗</a>
+<a href="https://services.india.gov.in/" target="_blank" rel="noopener">राष्ट्रीय सरकारी सेवा पोर्टल ↗</a>
+<a href="https://www.incometax.gov.in/" target="_blank" rel="noopener">आयकर विभाग — पैन सेवाएँ ↗</a></section>
+<footer id="footer">सहीनाम सेवा स्वतंत्र मार्गदर्शन डेमो है। यह सरकारी स्वीकृति या संबद्धता का दावा नहीं करता।</footer>
+</main>
+<script>
+const docs=[{id:"aadhaar",hi:"आधार कार्ड",en:"Aadhaar card"},{id:"pan",hi:"पैन कार्ड",en:"PAN card"},{id:"school",hi:"मार्कशीट",en:"Marksheet"},{id:"bank",hi:"बैंक रिकॉर्ड",en:"Bank record"}];
+let language="hi";
+const text={
+hi:{brand:"सहीनाम सेवा",tagline:"सही नाम • आसान मार्गदर्शन",langButton:"English",privacy:"🔒 सुरक्षित डेमो: केवल नकली नाम लिखें। असली आधार नंबर या दस्तावेज़ यहाँ न डालें। यह सरकारी ऐप नहीं है और सरकारी रिकॉर्ड अपने आप नहीं बदल सकता।",h1:"1. अपना सही नाम लिखें",p1:"वैध प्रमाण के अनुसार सही नाम दर्ज करें।",correctLabel:"सही नाम",compareBtn:"नामों की तुलना करें",demoBtn:"नकली उदाहरण भरें",h2:"2. दस्तावेज़ों में लिखा नाम",p2:"नीचे केवल नकली उदाहरण दर्ज करें। इस संस्करण में फ़ाइल अपलोड बंद है।",h3:"3. संभावित गलतियाँ",empty:"सही नाम लिखें, फिर दस्तावेज़ों के नाम दर्ज करके तुलना करें।",h4:"4. आधिकारिक सुधार लिंक",p4:"नियम बदल सकते हैं। आवेदन करने से पहले संबंधित विभाग की वेबसाइट पर मौजूदा प्रक्रिया जाँचें।",footer:"सहीनाम सेवा स्वतंत्र मार्गदर्शन डेमो है। यह सरकारी स्वीकृति या संबद्धता का दावा नहीं करता।",doc:"दस्तावेज़",name:"दर्ज नाम",match:"नाम मेल खाता है",mismatch:"नाम में अंतर है",missing:"नाम नहीं भरा गया",advice:"यह केवल लिखे हुए नामों की तुलना है, कानूनी सत्यापन नहीं। सुधार से पहले संबंधित विभाग से नियम और आवश्यक प्रमाण की पुष्टि करें।",emptyCorrect:"पहले सही नाम दर्ज करें."},
+en:{brand:"SahiNaam Seva",tagline:"Correct name • Clear guidance",langButton:"हिंदी",privacy:"🔒 Safe demo: Enter fictional names only. Do not enter real Aadhaar numbers or documents. This is not a government app and cannot change official records automatically.",h1:"1. Enter your correct name",p1:"Enter the name supported by your valid proof.",correctLabel:"Correct name",compareBtn:"Compare names",demoBtn:"Fill fictional example",h2:"2. Names on documents",p2:"Enter fictional examples only. File uploads are disabled in this version.",h3:"3. Possible mismatches",empty:"Enter the correct name and document names, then compare.",h4:"4. Official correction links",p4:"Rules can change. Check the current process on the relevant department website before applying.",footer:"SahiNaam Seva is an independent guidance demo. It does not claim government approval or affiliation.",doc:"Document",name:"Entered name",match:"Name matches",mismatch:"Name differs",missing:"No name entered",advice:"This is text comparison only, not legal verification. Confirm requirements and acceptable proof with the relevant department.",emptyCorrect:"Please enter the correct name first."}
+};
+function renderDocuments(){document.getElementById("documents").innerHTML=docs.map(d=>`<div class="rowdoc"><div><small>${text[language].doc}</small><strong>${d[language]}</strong></div><div><small>${text[language].name}</small><input id="${d.id}" autocomplete="off" placeholder="${language==="hi"?"नकली नाम लिखें":"Enter fictional name"}"></div></div>`).join("");}
+function setLanguage(){const t=text[language];Object.keys(t).forEach(k=>{const el=document.getElementById(k);if(el)el.textContent=t[k]});document.documentElement.lang=language;renderDocuments();document.getElementById("results").innerHTML=`<p>${t.empty}</p>`;}
+function toggleLanguage(){language=language==="hi"?"en":"hi";setLanguage();}
+function fillDemo(){document.getElementById("correct").value="Kavita Yadav";document.getElementById("aadhaar").value="Kavita Yadav";document.getElementById("pan").value="Kavita Yadav";document.getElementById("school").value="Kavita Yadavh";document.getElementById("bank").value="Kavita Yadav";compareNames();}
+function escapeHTML(v){return v.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function compareNames(){const correct=document.getElementById("correct").value.trim(),out=document.getElementById("results"),t=text[language];out.innerHTML="";if(!correct){out.innerHTML=`<div class="result bad">${t.emptyCorrect}</div>`;return;}docs.forEach(d=>{const value=document.getElementById(d.id).value.trim(),same=value.toLocaleLowerCase()===correct.toLocaleLowerCase(),status=!value?t.missing:(same?t.match:t.mismatch),div=document.createElement("div");div.className="result";div.innerHTML=`<strong class="${same&&value?'good':'bad'}">${d[language]} — ${status}</strong><div>${t.name}: ${escapeHTML(value||"—")}</div>`;out.appendChild(div);});const note=document.createElement("p");note.style.marginTop="12px";note.textContent=t.advice;out.appendChild(note);}
+renderDocuments();
+</script>
+</body>
+</html>
